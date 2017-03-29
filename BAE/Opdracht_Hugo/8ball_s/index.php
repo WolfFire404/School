@@ -3,7 +3,7 @@
 $title = 'Eightball';
 
 // Read the question from the form ($_POST-var)
-if (!empty($_GET'question')) {
+if (!empty($_GET['question'])) {
     $question =  $_GET['question']; // post-var from form (check the view)
 }
 else{
@@ -11,8 +11,8 @@ else{
 }
 
 // Get random ball number (1 to 21)
-$ballNumber = rand
+$ballNumber = rand(1,21);
 
-include 'views/headphp'
-include 'views/eightball'
- 'footer.php'
+include 'views/head.php';
+include 'views/eightball.php';
+include 'views/footer.php';
