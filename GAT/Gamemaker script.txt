@@ -1,0 +1,89 @@
+//OnCreate
+
+moveSpeed = 1.5;
+moveSpeedCurrent = 0;
+moveSpeedDecFactor = 0.85;
+
+moveSpeedMax = 10;
+
+jump = false;
+jumpForce = 10;
+jumpForceDecrease = 0.5;
+
+jumpForceCurrent = 0;
+
+//OnStep
+
+if (y + sprite_height < room_height)
+{
+		jumpForceCurrent +=  jumpForceDecrease;
+}
+else
+{
+	y = room_height - sprite_height;
+	jumpForceCurrent = 0;
+	jump = false;
+}
+
+if (!jump)
+{
+	if (keyboard_check(vk_space))
+	{
+		jump = true;
+		jumpForceCurrent = -jumpForce;
+	}
+}
+
+if (keyboard_check(ord('A')))
+{
+	moveSpeedCurrent -= moveSpeed;
+	if (moveSpeedCurrent <= -moveSpeedMax)
+	{
+		moveSpeedCurrent = -moveSpeedMax;
+	}
+}
+else if (keyboard_check(ord('D')))
+{
+	moveSpeedCurrent +=moveSpeed;
+	if (moveSpeedCurrent <= moveSpeedMax)
+	{
+		moveSpeedCurrent = moveSpeedMax;
+	}
+}
+else
+{
+	moveSpeedCurrent += moveSpeedDecFactor;
+	if (moveSpeedCurrent > -move && moveSpeedCurrent < moveSpeed)
+	{
+		moveSpeedCurrent = 0;
+	}
+}
+x += moveSpeedCurrent;
+y += jumpForceCurrent;
+
+//OnDraw
+
+draw_sprite(sprite_index, image_index, x, y);
+
+//Player_CollisionCheck
+var platformAmount = instance_number(obj_Platform);
+var platform = -1;
+
+for (var i = 0; i < platformAmount; i++)
+{
+	platform = instance_find(obj_Platform. i);
+	
+	if
+	{
+		bbox_left <= platform.bbox_right &&
+		bbox_right >= platform.bbox_left &&
+		bbox_top <= platform.bbox_bottom &&
+		bbox_bottom >= platform.bbox_top 
+	}
+	{
+		if (bbox_bottom - (y - yPrevious) < platform.bbox_top)
+		{
+			y = platform.bbox_top - sprite_height;
+		}
+	}
+}
