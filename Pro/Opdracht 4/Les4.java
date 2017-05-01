@@ -28,33 +28,26 @@ public class Les4{
     //de funtion saveToFile() zorgt dat je de ingevulde gegevens op kunt slaan in een externe filename
     //roep deze functie aan en geef als argument de naam van het gewenste textbestand
     //.txt kun je hierbij weglaten
-
+      
+      saveToFile("test");
+      
     //Opdracht 3
     //Compile de code, voer deze uit en check of de file die je verwacht ook gemaakt is.
     //Kloppen de gegevens ook die in de file staan?
 
+      
+      
     //Opdracht 4
     //Uncomment het volgende blok met code
-    /*
-    try{
-      URL url = (URL) this.getClass().getResource("sound/sample.wav");
-      AudioInputStream input = AudioSystem.getAudioInputStream(url);
-      DataLine.Info info = new DataLine.Info(Clip.class, input.getFormat());
-      Clip clip = (Clip) AudioSystem.getLine(info);
-      clip.open(input);
-      clip.start();
-      int ms = ((int) clip.getMicrosecondLength())/1000;
-      Thread.sleep(ms);
-    }catch (Exception e) {
-      System.out.println(e.toString());
-    }
-    */
 
 
     //Maak nu zelf een eigen function definition met de naam playSound();
     //Zet de geactiveerde code in de function en roep in plaats daarvan de function aan.
     //LET OP! dat je de function definieert na het eind van de "body" van de huidige function
 
+      
+      playSound();
+      
     //Extra Opdracht 5
     //Het pad naar de soundfile is nu "sound/short_sample.wav" en kun je alleen aanpassen door hem in de function te wijzigen
     //Maar wat nu als je 2 verschillende geluiden af wil spelen?
@@ -75,6 +68,26 @@ public class Les4{
   }//hier is de "body" van de function afgelopen
   //hier kun je dus een nieuwe function aanmaken
 
+    private  void playSound()
+    {
+          try
+    {
+      URL url = (URL) this.getClass().getResource("sound/sample.wav");
+      AudioInputStream input = AudioSystem.getAudioInputStream(url);
+      DataLine.Info info = new DataLine.Info(Clip.class, input.getFormat());
+      Clip clip = (Clip) AudioSystem.getLine(info);
+      clip.open(input);
+      clip.start();
+      int ms = ((int) clip.getMicrosecondLength())/1000;
+      Thread.sleep(ms);
+    }
+    catch (Exception e) 
+    {
+      System.out.println(e.toString());
+    }
+
+    }
+    
   private void monthsToWholeYears(int maanden){
     float f = maanden / 12;
     int roundedDown = (int)(f-(f%1)); //afronden naar beneden met Modulo en omzetten van float naar int
