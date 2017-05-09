@@ -91,7 +91,7 @@ public class Apple {
         }
       }
     }else{
-      System.out.println("You can't eat this!");
+      System.out.println("You cant'eat this!");
     }
   }
 }

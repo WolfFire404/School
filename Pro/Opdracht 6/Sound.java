@@ -20,7 +20,7 @@ public class Sound{
   public void play(){
 
     try{
-      clip.setFramePosition(0);      
+      clip.setFramePosition(0);
       clip.start();
       if(waitForEnd){
         int ms = ((int) clip.getMicrosecondLength())/1000;

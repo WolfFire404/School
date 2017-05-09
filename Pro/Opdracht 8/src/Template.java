@@ -1,11 +1,23 @@
 //Importeren van gebruikte classes
+import javafx.scene.shape.Circle;
+import javafx.scene.control.TextField;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Group;
+import javafx.scene.paint.Color;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import javafx.scene.control.PasswordField;
+import javafx.animation.Timeline;
+import javafx.animation.ParallelTransition;
+import javafx.animation.RotateTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.TranslateTransition;
+import javafx.animation.FillTransition;
+import javafx.util.Duration;
+import javafx.scene.shape.Rectangle;
 public class Template extends Application{  //zorg dat de class overerft van Application
   public void start(Stage stage){   //geef de stage mee als argument
     //creeer de "root node" Group
@@ -14,6 +26,7 @@ public class Template extends Application{  //zorg dat de class overerft van App
     Scene scene = new Scene(rootNode, 800, 600);
     //plaats de Scene op de Stage
     stage.setScene(scene);
+
 
     //inladen van een Image in een ImageView
     Image image = new Image("http://www.zombieplace.com/zombiecats/your-child-watched-too-many-zombie-movies.jpg", true);
@@ -28,25 +41,74 @@ public class Template extends Application{  //zorg dat de class overerft van App
     //plaats de extra groep in de root node
     rootNode.getChildren().add(group1);
 
+
+    TranslateTransition translate = new TranslateTransition(Duration.millis(750));
+translate.setToX(0);
+translate.setToY(360);
+
+FillTransition fill = new FillTransition(Duration.millis(750));
+fill.setToValue(Color.RED);
+
+RotateTransition rotate = new RotateTransition(Duration.millis(750));
+rotate.setToAngle(360);
+
+ScaleTransition scale = new ScaleTransition(Duration.millis(750));
+scale.setToX(0.1);
+scale.setToY(0.1);
+
+
+
+
+
     //maak een button aan en plaats deze in de extra group
-    Button button = new Button("ik ben een Button");
-    button.relocate(50,50);
+    Button button = new Button("Buut-on (Eerbetoon aan Jelle)");
+    button.relocate(50,60);
     group1.getChildren().add(button);
 
-    //laat de stage en inhoud renderen met de show() method
+
+    group1.getChildren().add(iv);
+    rootNode.getChildren().add(button);
+
+
+    Circle circle = new Circle();
+    circle.setCenterX(100.0f);
+    circle.setCenterY(100.0f);
+    circle.setRadius(50.0f);
+    group1.getChildren().add(circle);
+
+
+        ParallelTransition transition = new ParallelTransition(circle,
+        translate, fill, rotate, scale);
+        transition.setCycleCount(Timeline.INDEFINITE);
+        transition.setAutoReverse(true);
+        transition.play();
+
+        TextField textfield = new TextField();
+        textfield.relocate(50,100);
+        group1.getChildren().add(textfield);
+
+        PasswordField passwordField = new PasswordField();
+        passwordField.relocate(50,130);
+        group1.getChildren().add(passwordField);
+
+
+    stage.setTitle("JavaFX Scene Graph Demo");
+    stage.setScene(scene);//laat de stage en inhoud renderen met de show() method
     stage.show();
 
     //Opdracht 0
     //Lees in de javafx API reference wat alle geimporteerde classes doen.
     //Stel vragen als je iets niet begrijpt.
 
+
+
     //Opdracht 1
     //Wat gebeurt er als je de ImageView iv aan de group1 Group toevoegt,
     //en je de button toevoegt aan de rootNode Group?
     //Probeer het uit en verklaar wat er gebeurt en waarom dat zo is...
     //Zet je verklaring in een comment hieronder...
-    //
-    //
+    //er gebeurt niets.
+    //omdat weet niet
     //
 
     //Opdracht 2
@@ -54,6 +116,9 @@ public class Template extends Application{  //zorg dat de class overerft van App
     //Kijk in welke package de class zit en importeer deze
     //Maak in de start method een textField aan en plaats deze in de group1 Group
     //Gebruik de relocate() method om het textveld netjes onder de knop te plaatsen
+
+
+
 
     //Opdracht 3
     //Kies nog een ongebruikt type node uit en plaats deze in het scherm onder het TextField

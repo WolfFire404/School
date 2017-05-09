@@ -1,6 +1,9 @@
 import java.util.Scanner;
 import food.fruit.Apple;
 import food.Food;
+import food.fruit.Banana;
+import food.junkfood.Hamburger;
+import food.snoep.Coco;
 
 //met import kun je Classes importeren die in een package staan.
 //zoals bijvoorbeeld food.fruit.Apple
@@ -38,9 +41,15 @@ public class Les7{
       Les7 lesson = new Les7();
   }
   public Les7(){
-    Food[] food = new Food[10];
-    for(int i=0; i<food.length; i++){
-      food[i] = new Apple();
+    Food[] food = new Food[15];
+    for(int i=0; i<5; i++){
+      food[i] = new Banana();
+    }
+    for(int i=5; i<10; i++){
+      food[i] = new Hamburger();
+    }
+    for(int i=10; i<15; i++){
+      food[i] = new Coco();
     }
     Scanner scanner = new Scanner(System.in);
     int current = 0;
