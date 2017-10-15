@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>BMI Calculator</title>
+</head>
+<body>
+<div align="center">
+    <h2>
+        BMI Calculator<br/>
+    </h2>
+    Bereken hier uw BMI (Body Mass Index) om te kijken of u op een gezond gewicht zit.<br/>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    Uw gewicht in kg:
+                </td>
+                <td>
+                    <input id="gewicht" type="int" name="gewicht"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Uw lengte in cm:
+                </td>
+                <td>
+                    <input id="lengte" type="int" name="lengte"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Geslacht</td>
+                <td> Man <input type="radio" name="geslacht"></td>
+                <td> Vrouw <input type="radio" name="geslacht"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="submit" type="button" name="submit" value="Bereken BMI"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+    
+    <p id="ok"></p>
+    
+</body>
+</html>
+
+<script>
+
+    let p = document.getElementById("submit");
+    p.onclick = ajax;
+
+    function ajax() 
+    {
+        let xmlRequest = new XMLHttpRequest();
+        xmlRequest.open("post", "bmi.php", true);
+        let gewicht = document.getElementById("gewicht").value;
+        let lengte = document.getElementById("lengte").value;
+        xmlRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlRequest.onreadystatechange = function() {
+            let ok = document.getElementById("ok");
+            ok.innerHTML = this.responseText;
+        }
+        
+        xmlRequest.send("gewicht={0}&lengte={1}".replace("{0}", gewicht)
+                                                        .replace("{1}", lengte));
+    }
+</script>
